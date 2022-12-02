@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokimon</title>
+    <link rel="StyleSheet" href="/css/style.css" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!---BARRA DE NAVEGACION-->
+    <nav>
+      <a href="Entrenador">Entrenador</a>
+      <a href="Pokimon">Pokimon</a>
+      <a href="login">Salir</a>
+    </nav>
+
+    <!--DIV DE TITULO-->
+    <div class="titulo">
+      <img src="/img/imagen.jpg" width="100px" height="100px" />
+    </div>
+
+    <!--CONTENIDO Y FORMULARIOS-->
+    <div class="container">
+      <div class="row justify-content-center g-2 p-5">
+        <div class="card">
+          <h5 class="card-header">SISTEMA POKIMON (CENTRO POKIMON)</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Formulario Registro de Centro Pokimon</h5>
+                    <hr />
+                    <form action="/registrar" method="POST">
+                      <div class="mb-3">
+                        <input type="hidden" id="id" name="id" />
+                      </div>
+                      <div class="mb-3">
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="nombre"
+                          placeholder="Ingrese el nombre Pokimon  "
+                          autofocus
+                          name="nombre"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="raza"
+                          placeholder="Ingrese la raza del Pokimon"
+                          autofocus
+                          name="raza"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <input
+                          class="form-control"
+                          type="number"
+                          nim="1"
+                          max="999"
+                          id="punt_ataque"
+                          name="punt_ataque"
+                          placeholder="Ingrese los Puntos de Ataque"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <input
+                          class="form-control"
+                          type="number"
+                          min="5"
+                          max="999"
+                          id="punt_defensa"
+                          placeholder="Ingrese los Puntos de Defensa"
+                          name="punt_defensa"
+                          required
+                        />
+                      </div>
+
+                      <!---BOTON DE ENVIO-->
+                      <button type="submit" class="btn btn-danger">
+                        Registrar Pokimon
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Listado de Productos</h5>
+                    <hr/>
+                    <div class="table-responsive">
+                      <table action="/pokimones" id="table-pokimon" class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Raza</th>
+                            <th scope="col">Punt Ataque</th>
+                            <th scope="col">Punt Defensa</th>
+                            <th scope="col">Acciones</th>
+
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      function listarTabla(){
+        fetch('http://localhost:3050/pokimones')
+        .then((response=>response.json()))
+        .then((pokimones=>{
+          let tablaPok = document.querySelector('#table-pokimon tbody')
+          for (const itemPokimon of pokimones){
+            let tr = "<tr><td>" +itemPokimon.nombre + "</td><td>" +itemPokimon.raza + "</td><td>" +itemPokimon.punt_ataque +"</td><td>" +itemPokimon.punt_defensa +"</td><td><button>ENTRENAR</button</td> <td><button>CURAR</button</td></tr>" 
+              tablaPok.innerHTML += tr
+          }
+        }))
+      }
+
+      listarTabla();
+    </script>
+  </body>
+</html>

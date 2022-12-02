@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERRROR</title>
+    <link rel="StyleSheet" href="/css/style_error.css" type="text/css" />
+
+</head>
+<body>
+    <div class="imagen">
+        <img src="/img/error.png" width="200px" height="200px"/>
+    </div>
+    <div id="main">
+    	<div class="fof">
+        		<h1>Usuario o Contraseña incorrectas</h1>
+                <br>
+                <button id="boton" type="submit" onclick="redireccionar()">REGRESAR</button>
+    	</div>
+</div>
+</body>
+<script>
+    function redireccionar(){
+        setTimeout( function() {window.location.href = "/login"})
+    }
+</script>
+</html>

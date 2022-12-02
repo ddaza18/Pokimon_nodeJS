@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="StyleSheet" href="/css/stylelogin.css" type="text/css" />
+    
+
+</head>
+<body>
+    <div class="imagen">
+        <img src="/img/imagen1.jpg" width="700px" height="400px" />
+    </div>
+    <div class="login-box">
+        <h2>Login Sistema Pokimon</h2>
+        <form action="/auth" method="post">
+          <div class="user-box">
+            <input id="user" type="text" name="user" required>
+            <label for="user">Entrenador</label>
+          </div>
+          <div class="user-box">
+            <input id="pass" type="password" name="pass" required>
+            <label for="pass">Contraseña</label>
+          </div>
+          <input id="btn" type="submit" value="Iniciar Sesion">
+        </form>
+      </div>
+      
+</body>
+</html>

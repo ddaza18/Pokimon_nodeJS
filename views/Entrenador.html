@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrenadores</title>
+    <link rel="StyleSheet" href="/css/style.css" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!---BARRA DE NAVEGACION-->
+    <nav>
+      <a href="Entrenador">Entrenador</a>
+      <a href="Pokimon">Pokimon</a>
+      <a href="login">Salir</a>
+    </nav>
+
+    <!--DIV DE TITULO-->
+    <div class="titulo">
+      <img src="/img/imagen.jpg" width="100px" height="100px" />
+    </div>
+
+    <!--CONTENIDO Y FORMULARIOS-->
+    
+    <div class="container">
+      <div class="row justify-content-center g-2 p-5">
+        <div class="card">
+          <h5 class="card-header">SISTEMA POKIMON (ENTRENADOR POKIMON)</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Formulario Registro de Entrenadores</h5>
+                    <hr />
+                    <form action="/registrarEN" method="POST">
+                      <div class="mb-3">
+                        <input type="hidden" id="id" name="id" />
+                      </div>
+
+                      <div class="mb-3">
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="user"
+                          placeholder="Ingrese el nombre"
+                          autofocus
+                          name="user"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <input
+                          class="form-control"
+                          type="email"
+                          id="correo"
+                          placeholder="Ingrese su correo"
+                          autofocus
+                          name="correo"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="direccion"
+                          placeholder="Ingrese su direccion"
+                          name="direccion"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <input
+                          class="form-control"
+                          type="password"
+                          id="pass"
+                          placeholder="Ingrese la Contraseña"
+                          name="pass"
+                          required
+                        />
+                      </div>
+
+                      <!---BOTON DE ENVIO-->
+                      <button type="submit" class="btn btn-danger">
+                        Registrar Entrenador
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Listado de Entrenadores</h5>
+                    <hr />
+                    <div class="table-responsive">
+                      <table action="/entrenador" id="table-entrenador" class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+       function listarTabla(){
+        fetch('http://localhost:3050/entrenadores')
+        .then((response=>response.json()))
+        .then((entrenadores=>{
+          let tablaEN = document.querySelector('#table-entrenador tbody')
+          for (const itemENTRE of entrenadores){
+            let tr = "<tr><td>" +itemENTRE.user + "</td><td>" +itemENTRE.correo + "</td><td>" +itemENTRE.direccion +"</td></tr>"
+              tablaEN.innerHTML += tr
+          }
+        }))
+      }
+
+      listarTabla();
+    </script>
+  </body>
+</html>
